@@ -1,4 +1,4 @@
-namespace Services.Dtos;
+namespace Services.Dtos.Provider;
 
 public class CreateProviderDto
 {
