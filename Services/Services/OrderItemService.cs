@@ -77,7 +77,9 @@ public class OrderItemService : IOrderItemService
         orderItem.Name = name;
         orderItem.Quantity = quantity;
         orderItem.Unit = unit;
+        /*
         orderItem.OrderId = orderId;
+        */
         
         _dbContext.SaveChanges();
 
