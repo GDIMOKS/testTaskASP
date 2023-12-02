@@ -11,7 +11,7 @@ public interface IOrderItemService
     List<string> GetOrderItemNames();
     List<string> GetOrderItemUnits();
 
-    int AddOrderItem(string name, decimal quantity, string unit, int orderId, string orderNumber);
+    int AddOrderItem(string name, decimal quantity, string unit, int orderId/*, string orderNumber*/);
     bool DeleteOrderItem(int id);
-    int UpdateOrderItem(int id, string name, decimal quantity, string unit, int orderId, string orderNumber);
+    int UpdateOrderItem(int id, string name, decimal quantity, string unit, int orderId/*, string orderNumber*/);
 }

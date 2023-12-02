@@ -44,9 +44,13 @@ public class OrderItemService : IOrderItemService
             .ToList();
     }
 
-    public int AddOrderItem(string name, decimal quantity, string unit, int orderId, string orderNumber)
+    public int AddOrderItem(string name, decimal quantity, string unit, int orderId/*, string orderNumber*/)
     {
+        if (_dbContext.Orders.FirstOrDefault(x => x.Id == orderId)?.Number == name) return -1;
+
+        /*
         if (orderNumber == name) return -1;
+        */
         
         var orderItem = new OrderItem{Name = name, Quantity = quantity, Unit = unit, OrderId = orderId};
         var newOrderItem = _dbContext.Add(orderItem);
@@ -66,9 +70,9 @@ public class OrderItemService : IOrderItemService
         return true;
     }
 
-    public int UpdateOrderItem(int id, string name, decimal quantity, string unit, int orderId, string orderNumber)
+    public int UpdateOrderItem(int id, string name, decimal quantity, string unit, int orderId)
     {
-        if (orderNumber == name) return -1;
+        if (_dbContext.Orders.FirstOrDefault(x => x.Id == orderId)?.Number == name) return -1;
         
         var orderItem = _dbContext.OrderItems.FirstOrDefault(o => o.Id == id);
 

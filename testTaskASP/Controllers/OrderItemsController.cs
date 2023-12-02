@@ -41,9 +41,9 @@ public class OrderItemsController : ControllerBase
     }
     
     [HttpPost]
-    public IActionResult AddOrderItem([FromBody]CreateOrderItemDto dto, [FromBody]string orderNumber)
+    public IActionResult AddOrderItem([FromBody]CreateOrderItemDto dto/*,string orderNumber*/)
     {
-        var result = _orderItemService.AddOrderItem(dto.Name, dto.Quantity, dto.Unit, dto.OrderId, orderNumber);
+        var result = _orderItemService.AddOrderItem(dto.Name, dto.Quantity, dto.Unit, dto.OrderId/*, orderNumber*/);
         if (result == -1)
             return BadRequest("Имя элемента заказа не может быть равным номеру заказа!");
         
@@ -57,9 +57,9 @@ public class OrderItemsController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public IActionResult UpdateOrderItem([FromRoute]int id, [FromBody]CreateOrderItemDto dto, [FromBody]string orderNumber)
+    public IActionResult UpdateOrderItem([FromRoute]int id, [FromBody]CreateOrderItemDto dto/*, string orderNumber*/)
     {
-        var result = _orderItemService.UpdateOrderItem(id, dto.Name, dto.Quantity, dto.Unit, dto.OrderId, orderNumber);
+        var result = _orderItemService.UpdateOrderItem(id, dto.Name, dto.Quantity, dto.Unit, dto.OrderId/*, orderNumber*/);
 
         switch (result)
         {
