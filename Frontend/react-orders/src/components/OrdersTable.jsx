@@ -1,8 +1,10 @@
 ﻿import React, {useEffect, useState} from 'react';
-
 const OrdersTable = (props) => {
-    const [orders, setOrders] = useState([]);
+/*    const [orders, setOrders] = useState([]);
+
     const getOrders = async () => {
+        console.log(2222)
+        
         let request = {
             orderNumbers: null,
             orderBeginDate: null,
@@ -11,9 +13,10 @@ const OrdersTable = (props) => {
             orderItemNames:  null,
             orderItemUnits:  null
         };
-        if (props.request) {
-            request = props.request;
+        if (props.filters) {
+            request = props.filters;
         }
+        
         const options = {
             method: 'POST',
             headers: {
@@ -27,15 +30,14 @@ const OrdersTable = (props) => {
             setOrders(_orders);
             return _orders;
         }
-    }
-    
+    } 
     useEffect(() => {
         getOrders();
-    }, [props.request]);
+    }, []);*/
     
     return (
         <div>
-            {orders.map((order) => {
+            {props.orders.map((order) => {
                 return <div key={order.id} value={order.id}>{order.number} 
                     {order.orderItems.map((orderItem, index) => {
                         return <div key={index}>{orderItem.name}</div>
