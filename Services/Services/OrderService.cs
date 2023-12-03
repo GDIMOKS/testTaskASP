@@ -50,10 +50,10 @@ public class OrderService : IOrderService
         var orders = _dbContext.Orders
             .Include(x => x.OrderItems)
             .Where(order => filter == null || (!filter.OrderBeginDate.HasValue || order.Date >= filter.OrderBeginDate) && (!filter.OrderEndDate.HasValue || order.Date <= filter.OrderEndDate))
-            .Where(order => filter == null || filter.OrderNumbers == null || filter.OrderNumbers.Contains(order.Number))
-            .Where(order => filter == null || filter.ProvidersId == null || filter.ProvidersId.Contains(order.ProviderId))
-            .Where(order => filter == null || filter.OrderItemNames == null || order.OrderItems.Any(orderItem => filter.OrderItemNames.Contains(orderItem.Name)))
-            .Where(order => filter == null || filter.OrderItemUnits == null || order.OrderItems.Any(orderItem => filter.OrderItemUnits.Contains(orderItem.Unit)))
+            .Where(order => filter == null || filter.OrderNumbers == null || filter.OrderNumbers.Count == 0 || filter.OrderNumbers.Contains(order.Number))
+            .Where(order => filter == null || filter.ProvidersId == null || filter.ProvidersId.Count == 0 || filter.ProvidersId.Contains(order.ProviderId))
+            .Where(order => filter == null || filter.OrderItemNames == null || filter.OrderItemNames.Count == 0 || order.OrderItems.Any(orderItem => filter.OrderItemNames.Contains(orderItem.Name)))
+            .Where(order => filter == null || filter.OrderItemUnits == null || filter.OrderItemUnits.Count == 0 || order.OrderItems.Any(orderItem => filter.OrderItemUnits.Contains(orderItem.Unit)))
             .Select(order => new FitOrderDto(order))
             .ToList();
         
