@@ -22,7 +22,7 @@ const OrderItem = (props) => {
                 <div>{props.orderItem.quantity}</div>
                 <label>Единица измерения</label>
                 <div>{props.orderItem.unit}</div>
-
+                <hr/>
             </div>
 
             {

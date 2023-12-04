@@ -67,8 +67,7 @@ const MainPage = (props) => {
     return (
         <div className="MainPage">
             <Link to={{
-                pathname: "/order",
-                search: "1"
+                pathname: "/addorder"
             }}>Добавить заказ</Link>
             <form onSubmit={e => {
                 e.preventDefault();

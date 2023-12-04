@@ -66,6 +66,7 @@ const OrderPage = () => {
     }, []);
     return (
         <div>
+            <Link to="/">На главную</Link>
             <div className="orderInfo">
                 <label>Номер заказа</label>
                 <div> {order.number}</div>
@@ -79,7 +80,7 @@ const OrderPage = () => {
                     <button onClick={e=> {
                         e.preventDefault()
                         removeOrder()
-                    }}>Удалить</button>
+                    }}>Удалить заказ</button>
                 </div>
                 
                 <Link to={{
