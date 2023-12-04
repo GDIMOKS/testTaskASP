@@ -83,7 +83,7 @@ const MainPage = (props) => {
 
                 <input type="submit"  value="Применить фильтры"/>
             </form>
-
+            <h2>Заказы:</h2>
             <OrdersTable orders={orders}/>
         </div>
     );
