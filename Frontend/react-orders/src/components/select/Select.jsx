@@ -1,4 +1,5 @@
 ﻿import React, {useEffect} from 'react';
+import StylesS from './Select.module.scss'
 
 const Select = (props) => {
     const getDefaultValue = () => {
@@ -7,9 +8,9 @@ const Select = (props) => {
     }
     
     return (
-        <>
-            <label>{props.labelText}</label>
-            <select multiple={props.type}
+        <div className={StylesS.filterItem}>
+            <label className={StylesS.label}>{props.labelText}</label>
+            <select className={StylesS.chooseFilter} multiple={props.type}
                     value={props.value}
                     onChange={event => props.onChange(event.target)}
             >
@@ -32,7 +33,7 @@ const Select = (props) => {
                 })}
 
             </select>
-        </>
+        </div>
     );
     
 };

@@ -1,0 +1,33 @@
+﻿.orderItemInfo {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px 10px 0 0;
+  padding: 20px;
+}
+
+.orderItemInfoSecond {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 0 0 10px 0;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 0 0 10px 10px;
+  padding: 15px 30px;
+  cursor: pointer;
+  width: 100%;
+  background-color: #dadada;
+  margin: 0 0 10px 0;
+
+  &:hover {
+    background-color: orange;
+  }
+}

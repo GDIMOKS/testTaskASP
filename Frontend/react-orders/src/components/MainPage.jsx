@@ -65,26 +65,36 @@ const MainPage = (props) => {
 
 
     return (
-        <div className="MainPage">
-            <Link to={{
-                pathname: "/addorder"
-            }}>Добавить заказ</Link>
-            <form onSubmit={e => {
-                e.preventDefault();
-                getOrders(false)
-            }}>
-                <DateInput labelText='Начальная дата' onChange={changeFilterValues} filterName='orderBeginDate'/>
-                <DateInput labelText='Конечная дата' onChange={changeFilterValues} filterName='orderEndDate'/>
+        <div className="MainPage commonPage">
+            
+            <main className="orders">
+                <Link className="button" to={{
+                    pathname: "/addorder"
+                }}>Добавить заказ</Link>
+                <div className="orderItem">
+                    <OrdersTable orders={orders}/>
+                </div>
+            </main>
 
-                <MultipleFilter baseUrl={baseUrl} destination={'providers'} filterName='providersId' changeFilterValues={changeFilterValues} labelText='По провайдеру'/>
-                <MultipleFilter baseUrl={baseUrl} destination={'orders/numbers'} filterName='orderNumbers' changeFilterValues={changeFilterValues} labelText='По номеру заказа'/>
-                <MultipleFilter baseUrl={baseUrl} destination={'orderItems/names'} filterName='orderItemNames' changeFilterValues={changeFilterValues} labelText='По названию'/>
-                <MultipleFilter baseUrl={baseUrl} destination={'orderItems/units'} filterName='orderItemUnits' changeFilterValues={changeFilterValues} labelText='По единице измерения'/>
+            <aside className="aside">
+                <form className="filtersAndButton" onSubmit={e => {
+                    e.preventDefault();
+                    getOrders(false)
+                }}>
+                    <div className="dates">
+                        <DateInput labelText='Начальная дата' onChange={changeFilterValues} filterName='orderBeginDate'/>
+                        <DateInput labelText='Конечная дата' onChange={changeFilterValues} filterName='orderEndDate'/>
+                    </div>
+                    <div className="multipleFilters">
+                        <MultipleFilter baseUrl={baseUrl} destination={'providers'} filterName='providersId' changeFilterValues={changeFilterValues} labelText='По провайдеру'/>
+                        <MultipleFilter baseUrl={baseUrl} destination={'orders/numbers'} filterName='orderNumbers' changeFilterValues={changeFilterValues} labelText='По номеру заказа'/>
+                        <MultipleFilter baseUrl={baseUrl} destination={'orderItems/names'} filterName='orderItemNames' changeFilterValues={changeFilterValues} labelText='По названию'/>
+                        <MultipleFilter baseUrl={baseUrl} destination={'orderItems/units'} filterName='orderItemUnits' changeFilterValues={changeFilterValues} labelText='По единице измерения'/>
+                    </div>
 
-                <input type="submit"  value="Применить фильтры"/>
-            </form>
-            <h2>Заказы:</h2>
-            <OrdersTable orders={orders}/>
+                    <input className="button" type="submit"  value="Применить фильтры"/>
+                </form>
+            </aside>
         </div>
     );
 };

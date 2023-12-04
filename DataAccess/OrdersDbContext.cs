@@ -32,7 +32,10 @@ public class OrdersDbContext : DbContext
         modelBuilder.Entity<Provider>().ToTable("Provider");
 
         modelBuilder.Entity<Order>().ToTable("Order");
+        //теперь проверяется на стороне фронта, EF не дает обновлять альтернативные ключи
+        /* 
         modelBuilder.Entity<Order>().HasAlternateKey(o => new {o.Number, o.ProviderId});
+        */
 
         modelBuilder.Entity<OrderItem>().ToTable("OrderItem");
 

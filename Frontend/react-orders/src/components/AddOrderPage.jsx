@@ -5,8 +5,8 @@ import {Link, useLocation} from "react-router-dom";
 const AddOrderPage = (props) => {
 
     return (
-        <div>
-            <Link to="/">На главную</Link>
+        <div className="AddOrderPage commonPage">
+            <Link className="button" to="/">На главную</Link>
             <OrderForm formType={'add'} baseUrl={apiUrl}/>
 
         </div>

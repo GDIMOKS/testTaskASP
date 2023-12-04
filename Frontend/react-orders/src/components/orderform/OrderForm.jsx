@@ -4,6 +4,7 @@ import {getObjects} from "../../libraries/functions";
 import Input from "../UI/input/Input";
 import OrderItemsList from "../orderitemlist/OrderItemsList";
 import OrderItemForm from "../orderitemform/OrderItemForm";
+import StylesOF from "./OrderForm.module.scss";
 
 const OrderForm = ({formType, baseUrl, ...props}) => {
     const [allProviders, setAllProviders] = useState([]);
@@ -86,7 +87,28 @@ const OrderForm = ({formType, baseUrl, ...props}) => {
         
     }
 
-    
+    const editOrder = async (e) => {
+        e.preventDefault()
+        console.log(order)
+
+        if (!checkOrderValues(order)) {
+            console.log("Поля заказа должны быть заполнены!")
+            return
+        }
+
+        const options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(order)
+        }
+        const result = await fetch(baseUrl + "orders\\" +order.id, options)
+
+        if (result.ok) {
+            console.log("Заказ успешно обновлен!")
+        }
+    }
     const addNewOrder = async (e) => {
         e.preventDefault()
         console.log(order)
@@ -127,31 +149,48 @@ const OrderForm = ({formType, baseUrl, ...props}) => {
         if (formType === 'edit')
             getOrder(baseUrl, "orders\\" + props.orderId)
     }, []);
+
+    const getButton = () => {
+        if (formType === 'edit')
+            return <button className="button" onClick={e => {editOrder(e)}}>Сохранить изменения в заказе</button>
+
+        else
+            return <button className="button" onClick={e => {addNewOrder(e).then(value => {console.log(value)})}}>Создать заказ с добавленными элементами</button>
+
+    }
     
     return (
         <form>
-            <div className="orderInfo">
+            <div className={StylesOF.orderInfo}>
                 <Input
+                    className={StylesOF.orderName}
                     value={order.number}
                     onChange={e => setOrder({...order, number: e.target.value})}
                     type={"text"}
                     placeholder={"Название заказа"}/>
-                <Input
-                    value={order.date}
-                    onChange={e => setOrder({...order, date: e.target.value})}
-                    type={"datetime-local"}/>
+                
+                <div className={StylesOF.dateAndProvider}>
+                    <div className={StylesOF.date}>
+                        <label>Выберите дату</label>
+                            <Input
+                                value={order.date}
+                                onChange={e => setOrder({...order, date: e.target.value})}
+                                type={"datetime-local"}/>
+                    </div>
+                    <Select
+                        type={false}
+                        labelText = {'Провайдер'}
+                        options={allProviders}
+                        value={order.providerId}
+                        onChange={(target) =>
+                        {
+                            setOrder({...order, providerId: target.value})
+                        }} />
+                </div>
 
-                <Select
-                    type={false}
-                    labelText = {'Провайдер'}
-                    options={allProviders}
-                    value={order.providerId}
-                    onChange={(target) =>
-                    {
-                        setOrder({...order, providerId: target.value})
-                    }} />      
-
-                    <button onClick={e => {addNewOrder(e).then(value => {console.log(value)})}}>Создать заказ</button>
+                {
+                    getButton()
+                }
             </div>
             
             <OrderItemForm

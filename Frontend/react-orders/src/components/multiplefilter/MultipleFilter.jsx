@@ -1,6 +1,7 @@
 ﻿import React, {useEffect, useState} from 'react';
 import Select from "../select/Select";
 import {getObjects} from "../../libraries/functions";
+import StylesMF  from './MultipleFilter.module.scss'
 
 const MultipleFilter = (props) => {
     const [objects, setObjects] = useState([]);
@@ -12,7 +13,7 @@ const MultipleFilter = (props) => {
     
     
     return ( 
-        <div>
+        <div className={StylesMF.filterItem}>
         <Select
             type={true}
             labelText = {props.labelText}

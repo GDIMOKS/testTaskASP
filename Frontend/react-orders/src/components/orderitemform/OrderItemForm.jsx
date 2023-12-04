@@ -1,5 +1,6 @@
 ﻿import React, {useState} from 'react';
 import Input from "../UI/input/Input";
+import StylesOIF from "./OrderItemForm.module.scss"
 
 const OrderItemForm = (props) => {
     const [orderItem, setOrderItem] = useState({
@@ -9,7 +10,7 @@ const OrderItemForm = (props) => {
     })
     
     return (
-        <div>
+        <div className={StylesOIF.inputsList}>
             <Input
                 required
                 value={orderItem.name}

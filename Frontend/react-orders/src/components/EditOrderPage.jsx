@@ -8,8 +8,8 @@ const EditOrderPage = () => {
     console.log(state.search.substring(1))
     return (
         
-        <div>
-            <Link to="/">На главную</Link>
+        <div className="EditOrderPage commonPage">
+            <Link className="button" to="/">На главную</Link>
             <OrderForm formType={'edit'} baseUrl={apiUrl} orderId={state.search.substring(1)} />
         </div>
     );

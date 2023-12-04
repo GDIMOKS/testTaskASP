@@ -1,0 +1,15 @@
+﻿.filterItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 100%;
+  
+  > .label {
+    font-size: 18px;
+  }
+  
+  > .chooseFilter {
+    width: 100%;
+    height: 120px;
+  }
+}

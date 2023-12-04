@@ -65,29 +65,32 @@ const OrderPage = () => {
         })
     }, []);
     return (
-        <div>
-            <Link to="/">На главную</Link>
-            <div className="orderInfo">
-                <label>Номер заказа</label>
-                <div> {order.number}</div>
-                
-                <label>Дата</label>
-                <div>{order.date}</div>
-
-                <label>Провайдер</label>
-                <div>{order.providerName}</div>
-                <div>
-                    <button onClick={e=> {
-                        e.preventDefault()
-                        removeOrder()
-                    }}>Удалить заказ</button>
+        <div className="OrderPage commonPage">
+            <Link className="button" to="/">На главную</Link>
+            <div>
+                <div className="orderInfo">
+                    <label>Номер заказа</label>
+                    <div> {order.number}</div>
+                    
+                    <label>Дата</label>
+                    <div>{order.date}</div>
+    
+                    <label>Провайдер</label>
+                    <div>{order.providerName}</div>
                 </div>
-                
-                <Link to={{
-                    pathname: "/editorder",
-                    search: orderId
-                }}>Редактировать </Link>
-                
+                <div className="twoButtons">
+                    <div>
+                        <button className="button" onClick={e=> {
+                            e.preventDefault()
+                            removeOrder()
+                        }}>Удалить заказ</button>
+                    </div>
+                    
+                    <Link className="button" to={{
+                        pathname: "/editorder",
+                        search: orderId
+                    }}>Редактировать </Link>
+                </div>
             </div>
 
             <OrderItemsList

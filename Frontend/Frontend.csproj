@@ -9,7 +9,6 @@
     <ItemGroup>
       <Folder Include="react-orders\src\components\UI\button\" />
       <Folder Include="react-orders\src\components\UI\form\" />
-      <Folder Include="react-orders\src\styles\" />
     </ItemGroup>
 
 </Project>
